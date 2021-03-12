@@ -1,25 +1,11 @@
 # name: FishFace
 
-set fish_git_dirty_color red
-set fish_git_not_dirty_color green
-
 function _git_branch_name
 	echo (command git symbolic-ref HEAD 2> /dev/null | sed -e 's|^refs/heads/||')
 end
 
 function _is_git_dirty
 	echo (command git status -s --ignore-submodules=dirty 2> /dev/null)
-end
-
-function parse_git_branch
-	set -l branch (git branch 2> /dev/null | grep -e '\* ' | sed 's/^..\(.*\)/\1/')
-	set -l git_status (git status -s)
-
-	if test -n "$git_status"
-		echo (set_color $fish_git_dirty_color)$branch(set_color normal)
-	else
-		echo (set_color $fish_git_not_dirty_color)$branch(set_color normal)
-	end
 end
 
 function fish_prompt
