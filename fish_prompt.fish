@@ -1,5 +1,4 @@
 # name: FishFace
-# https://github.com/Brottweiler/fishface
 
 set fish_git_dirty_color red
 set fish_git_not_dirty_color green
@@ -26,18 +25,20 @@ end
 function fish_prompt
 	set -l blue (set_color -o blue)
 	set -l green (set_color -o green)
+	set -l red (set_color -o red)
 
 	if [ (_git_branch_name) ]
-		echo -n -s "$green><(((\"> "
+		if [ (_is_git_dirty) ]
+			echo -n -s "$red><(((\"> "
+		else
+			echo -n -s "$green><(((\"> "
+		end
 	else
 		echo -n -s "$blue><(((\"> "
 	end
 end
 
 function fish_right_prompt
-	set -l blue (set_color -o blue)
-	set -l green (set_color -o green)
-
 	set -l git_dir (git rev-parse --git-dir 2> /dev/null)
 
 	if test -n "$git_dir"
