@@ -9,11 +9,11 @@ Shows an ASCII fish which is blue or green when in a git repo.
 To disable the branch name on the right side prompt, comment out the following line of code.
 
 ```bash
-# set -l git_dir (git rev-parse --git-dir 2> /dev/null)
+set -l git_dir (git rev-parse --git-dir 2> /dev/null)
 ```
 
 # Resources
 
 ## Git branch info
 
-# https://gist.github.com/721241c7c34f841eed07
+Git branch functionality was inspired from [davidmh](https://github.com/davidmh)'s [config.fish](https://gist.github.com/721241c7c34f841eed07).
